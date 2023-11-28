@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <style>
+        /* Apply some basic styles to the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7; /* Light gray background */
+        }
+
+        /* Style the headings */
+        h1, h3 {
+            text-align: center;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Style the forms */
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Style the form inputs and submit button */
+        input[type="number"],
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #333; /* Dark gray border */
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Center the submit button */
+        p {
+            text-align: center;
+        }
+
+        /* Error message */
+        p.error {
+            color: red;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Encomendas</h1>
+
+    <h3>Realizar encomenda</h3>
+    <form action="realizar_encomenda" method="post">
+        <p>Nº cliente: <input type="number" name="cust_no"/></p>
+        <p>SKU: <input type="text" name="sku"/></p>
+        <p>Quantidade: <input type="number" name="quantity"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+
+    <h3>Pagar encomenda</h3>
+    <form action="pagar_encomenda" method="post">
+        <p>Nº encomenda: <input type="number" name="order_no"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+</body>
+</html>

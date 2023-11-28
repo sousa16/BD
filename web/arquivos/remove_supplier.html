@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Remover fornecedor</title>
+</head>
+<body>
+    <h3>Remover fornecedor {{ params.get("tin") }}</h3>
+    <form action="update_supplier" method="post">
+        <p> <input type="hidden" name="tin" value="{{ params.get('tin') }}"/></p>
+        <p><input type="submit" value="You sure?"/></p>
+    </form>
+</body>
+</html>

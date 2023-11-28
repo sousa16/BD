@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Clients</title>
+    <style>
+        /* Apply some basic styles to the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px; /* Increase padding for spacing */
+            background-color: #f7f7f7; /* Light gray background */
+        }
+
+        /* Style the heading */
+
+        h1 {
+            text-align: center;
+        }
+        
+        h1, h3 {
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Style the form */
+        form {
+            margin-top: 20px;
+        }
+
+        /* Style the form inputs and submit button */
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+            border: 1px solid #333; /* Dark gray border */
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style the table */
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        /* Style the table headers */
+        th {
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            padding: 10px;
+        }
+
+        /* Style the table cells */
+        td {
+            padding: 10px;
+            border: 1px solid #333; /* Dark gray border */
+        }
+
+        /* Style the remove link */
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Apply some hover effect to the links */
+        a:hover {
+            background-color: #333; /* Dark gray background on hover */
+            color: #fff; /* White text color on hover */
+        }
+    </style>
+</head>
+
+<body style="padding:20px">
+    <h1>Clientes</h1>
+    <h3>Registar cliente</h3>
+    <form action="registar_cliente" method="post">
+        <p>Nome: <input type="text" name="name"/></p>
+        <p>E-mail: <input type="text" name="email"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+{% if cursor %}
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in cursor %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td><a href="remove_customer?email={{ record[1] }}">Remover</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p> Erro: ao obter dados da base de dados! </p>
+{% endif %}
+</body>
+</html>

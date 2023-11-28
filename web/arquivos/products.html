@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Products and Suppliers</title>
+    <style>
+        /* Apply some basic styles to the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7; /* Light gray background */
+        }
+
+        /* Style the headings */
+
+        h1 {
+            text-align: center;
+        }
+
+        h1, h3 {
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Style the forms */
+        form {
+            margin-top: 20px;
+        }
+
+        /* Style the form inputs and submit button */
+        input[type="text"],
+        input[type="number"] {
+            padding: 5px;
+            width: 200px;
+            border: 1px solid #333; /* Dark gray border */
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style the tables */
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        /* Style the table headers */
+        th {
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+            padding: 10px;
+        }
+
+        /* Style the table cells */
+        td {
+            padding: 10px;
+            border: 1px solid #333; /* Dark gray border */
+        }
+
+        /* Style the remove link */
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Apply some hover effect to the links */
+        a:hover {
+            background-color: #333; /* Dark gray background on hover */
+            color: #fff; /* White text color on hover */
+        }
+
+        /* Error message */
+        p.error {
+            color: red;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body style="padding:20px">
+    <h1>Produtos</h1>
+    <h3>Registar produto</h3>
+    <form action="registar_produto" method="post">
+        <p>Nome: <input type="text" name="name"/></p>
+        <p>SKU: <input type="text" name="sku"/></p>
+        <p>Preço: <input type="number" name="price"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+{% if cursor %}
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>SKU</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in cursor %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>{{ record[3] }}</td>
+                <td><a href="remove_product?sku={{ record[1] }}">Remover</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Alterar produto</h3>
+    <form action="alterar_produto" method="post">
+        <p>SKU: <input type="text" name="sku"/></p>
+        <p>Preço: <input type="number" name="price"/></p>
+        <p>Descrição: <input type="text" name="description"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+
+    <h3>Registar fornecedor</h3>
+    <form action="registar_fornecedor" method="post">
+        <p>TIN: <input type="text" name="tin"/></p>
+        <p>SKU: <input type="text" name="sku"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+{% if cursor %}
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>TIN</th>
+                <th>SKU</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in cursor %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td><a href="remove_supplier?tin={{ record[0] }}">Remover</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p> Erro: ao obter dados da base de dados! </p>
+{% endif %}
+</body>
+</html>
